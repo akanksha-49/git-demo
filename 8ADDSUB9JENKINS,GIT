@@ -1,0 +1,85 @@
+def add(a, b):
+    return a + b
+
+def sub(a, b):
+    return a - b
+
+def mul(a, b):
+    return a * b
+
+def div(a, b):
+    if b != 0:
+        return a / b
+    else:
+        return "Cannot divide by zero"
+
+if __name__ == "__main__":
+    a = 10
+    b = 5
+
+    print("Addition:", add(a, b))
+    print("Subtraction:", sub(a, b))
+    print("Multiplication:", mul(a, b))
+    print("Division:", div(a, b))
+
+
+
+
+PUSH CODE TO GIT 
+
+cd path/to/python-calculator
+git init
+git remote add origin https://github.com/your-username/python-calculator.git
+
+git add calculator.py
+git commit -m "Initial commit: Python calculator with basic operations"
+git branch -M main
+git push -u origin main
+
+
+
+ Create Jenkins Freestyle Project
+Go to Jenkins Dashboard
+
+Click New Item
+
+Name: Python-Calculator-Job
+
+Select Freestyle project → Click OK
+
+Configure GitHub Repository
+
+Go to Source Code Management → Select Git
+
+Enter: https://github.com/your-username/python-calculator.git
+
+Build Step
+
+Scroll to Build → Add build step → Execute shell
+
+Paste the following:
+
+bash
+Copy
+Edit
+echo "Running Python Calculator"
+python3 calculator.py
+Use python calculator.py if your system uses python instead of python3
+
+Save and Build
+
+Click Save
+
+Click Build Now
+
+Check Output
+
+Go to Build History → Click the latest build → Console Output
+
+You should see:
+
+
+Addition: 15
+Subtraction: 5
+Multiplication: 50
+Division: 2.0
