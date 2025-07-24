@@ -1,0 +1,96 @@
+1. Push Java Program to GitHub
+📁 Example repo structure:
+
+Copy
+Edit
+JavaApp/
+├── HelloWorld.java
+🔹 HelloWorld.java
+java
+Copy
+Edit
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello from Jenkins + Git + Remote Trigger!");
+    }
+}
+Then push it to GitHub:
+
+bash
+Copy
+Edit
+git init
+git add HelloWorld.java
+git commit -m "Initial commit - Java Hello World"
+git remote add origin https://github.com/your-username/JavaApp.git
+git push -u origin main
+✅ 2. Create Jenkins Freestyle Job
+Steps:
+Go to Jenkins Dashboard → New Item
+
+Name it: Java-Remote-Build
+
+Choose Freestyle project → Click OK
+
+✅ 3. Configure Git Repository
+In Source Code Management:
+
+Select: Git
+
+Add repo URL: https://github.com/your-username/JavaApp.git
+
+✅ 4. Add Build Step
+In Build > Add build step → Execute shell, add:
+
+bash
+Copy
+Edit
+echo "Compiling Java..."
+javac HelloWorld.java
+
+echo "Running Program..."
+java HelloWorld
+Make sure Jenkins has access to javac and java in PATH.
+
+✅ 5. Enable Remote Trigger
+Scroll to Build Triggers:
+
+✅ Check "Trigger builds remotely (e.g., from scripts)"
+
+Enter a unique authentication token, like: mysecuretoken123
+
+Jenkins will display the URL like:
+
+bash
+Copy
+Edit
+http://<your-jenkins-server>/job/Java-Remote-Build/build?token=mysecuretoken123
+✅ 6. Save and Trigger the Build
+You can now trigger this job remotely using:
+
+🔹 Trigger using curl:
+bash
+Copy
+Edit
+curl http://localhost:8080/job/Java-Remote-Build/build?token=mysecuretoken123
+Or from browser:
+
+bash
+Copy
+Edit
+http://localhost:8080/job/Java-Remote-Build/build?token=mysecuretoken123
+✅ The job will:
+
+Clone the repo
+
+Compile and run the Java file
+
+Output: Hello from Jenkins + Git + Remote Trigger!
+
+✅ Bonus: Trigger with Parameters (optional)
+If you check "This project is parameterized", you can trigger with:
+
+bash
+Copy
+Edit
+/buildWithParameters?token=your_token&param=value
