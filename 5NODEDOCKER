@@ -1,0 +1,25 @@
+vi hello.js
+
+console.log("Hello Docker from node program");
+
+o vi Dockerfile
+
+FROM node:alpine
+WORKDIR /app
+COPY . /app
+CMD node hello.js
+ Build and run the Docker image
+o $ docker build –t nodeimage .
+o $ docker run -it nodeimage
+
+
+
+//PUSH TO GIT 
+
+
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/your-username/your-repo-name.git
+git branch -M main
+git push -u origin main
