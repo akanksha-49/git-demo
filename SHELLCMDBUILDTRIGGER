@@ -1,0 +1,83 @@
+In browser open https://localhost:8080 and login in using your account.
+ Create a new Jenkins job using the "Freestyle project" type.
+o In the dash board, Click on New item to create job.
+o Assign a meaningful name for the job and select free style project option and click on OK
+button.
+
+ Provide a description about application and under Buildsteps option choose execute shell.
+ Type few linux commands in shell window.
+o whoami
+o pwd
+o mkdir demo
+o ls
+o cd demo
+o echo “Hello Jenkins” > sample.txt
+o ls
+o cat sample.txt
+ Cilck on Save button.
+ Click on build now option available in dash board.
+ To watch the output click on Console output
+
+
+
+1. Open Jenkins Dashboard
+Go to your Jenkins server (e.g., http://localhost:8080)
+
+Click on New Item
+
+Enter a job name: Shell-Command-Job
+
+Select Freestyle project
+
+Click OK
+
+📌 2. Add a Shell Command to Run
+Scroll down to Build
+
+Click Add build step → Execute shell
+
+In the box, write any shell command. Example:
+
+bash
+Copy
+Edit
+echo "This job is triggered every 5 minutes"
+date
+You can replace this with any actual script or command.
+
+📌 3. Add Periodic Build Trigger (every 5 mins)
+Scroll to Build Triggers
+
+Check the box Build periodically
+
+In the Schedule box, enter:
+
+Copy
+Edit
+H/5 * * * *
+This means:
+
+H/5: Run every 5 minutes, but Jenkins will hash the start time (H) to avoid overloading.
+
+* * * *: Every hour, every day, every month, etc.
+
+📌 4. Save the Job
+Click Save
+
+📌 5. Watch It Run Automatically
+Jenkins will now run this job every 5 minutes automatically.
+
+You can also trigger it manually anytime by clicking Build Now.
+
+To check output: Click the build in Build History → Console Output
+
+✅ Output Example:
+In console:
+
+csharp
+Copy
+Edit
+This job is triggered every 5 minutes
+Thu Jul 24 22:10:01 IST 2025
+
+H/5 * * * *
