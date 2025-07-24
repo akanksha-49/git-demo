@@ -1,0 +1,28 @@
+vi app.py
+from flask import Flask
+app = Flask(__name__)
+@app.route('/')
+def run():
+return "Hello, World!"
+if __name__ == '__main__':
+app.run(debug=True, host="0.0.0.0", port=8000)
+o vi requirements.txt
+flask
+o vi Dockerfile
+FROM python:latest
+WORKDIR /python-flask-docker
+copy . /python-flask-docker
+RUN pip install -r requirements.txt
+EXPOSE 8000
+CMD python ./app.py
+ Build and run the Docker image
+o $ docker build –t flaskimage .
+o $ docker run -it flaskimage
+
+
+git init
+git add .
+git commit -m "Initial commit"
+git remote add origin https://github.com/your-username/your-repo-name.git
+git branch -M main
+git push -u origin main
