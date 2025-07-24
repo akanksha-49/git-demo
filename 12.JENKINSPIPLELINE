@@ -1,0 +1,80 @@
+Step 1: Create a Jenkinsfile
+Create a file named Jenkinsfile (no file extension) in your project directory with the following contents:
+
+💡 Example: Jenkinsfile (runs a shell script)
+groovy
+Copy
+Edit
+pipeline {
+    agent any
+
+    triggers {
+        cron('H/5 * * * *') // runs every 5 minutes
+    }
+
+    stages {
+        stage('Checkout') {
+            steps {
+                git 'https://github.com/your-username/your-repo-name.git'
+            }
+        }
+
+        stage('Build') {
+            steps {
+                echo 'Running shell script...'
+                sh 'echo "Hello from Jenkins Pipeline!"'
+                sh 'date'
+            }
+        }
+    }
+}
+🔁 Replace the git URL with your actual GitHub repo containing the Jenkinsfile.
+
+✅ Step 2: Push Jenkinsfile to GitHub
+bash
+Copy
+Edit
+cd your-project-folder
+git init
+git add Jenkinsfile
+git commit -m "Add Jenkinsfile for pipeline job"
+git remote add origin https://github.com/your-username/your-repo-name.git
+git push -u origin main
+✅ Step 3: Create Jenkins Pipeline Job
+Go to Jenkins Dashboard
+
+Click New Item
+
+Enter job name: Pipeline-Jenkinsfile-Job
+
+Select Pipeline → Click OK
+
+✅ Step 4: Configure the Pipeline
+Scroll to Pipeline section
+
+Choose Pipeline script from SCM
+
+Set:
+
+SCM: Git
+
+Repository URL: https://github.com/your-username/your-repo-name.git
+
+Branch: main
+
+Script Path: Jenkinsfile
+
+✅ Step 5: Save and Build
+Click Save
+
+Click Build Now to trigger manually
+
+Or wait for the cron trigger to execute automatically every 5 minutes
+
+✅ Sample Console Output:
+sql
+Copy
+Edit
+Running shell script...
+Hello from Jenkins Pipeline!
+Thu Jul 24 22:25:01 IST 2025
