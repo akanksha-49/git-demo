@@ -1,0 +1,9 @@
+PYTHON DOCKER IMAGE 
+
+docker pull python
+docker run -it --name mypythoncontainer python bash
+Once inside the container, you can run:
+
+python
+print("Hello from Docker")
+exit()
