@@ -1,0 +1,82 @@
+✅ 1. Simple C Program: hello.c
+#include <stdio.h>
+
+int main() {
+    printf("Hello, World from Jenkins!\n");
+    return 0;
+}
+Save this as hello.c in a folder, e.g., C-Jenkins-Demo.
+
+✅ 2. Push the Code to GitHub
+Step-by-step:
+
+bash
+Copy
+Edit
+# Step 1: Navigate to the project directory
+cd C-Jenkins-Demo
+
+# Step 2: Initialize Git
+git init
+
+# Step 3: Add remote repo (replace with your GitHub repo URL)
+git remote add origin https://github.com/your-username/C-Jenkins-Demo.git
+
+# Step 4: Add files and commit
+git add .
+git commit -m "Initial commit - Hello World C program"
+
+# Step 5: Push to GitHub
+git branch -M main
+git push -u origin main
+✅ 3. Create Jenkins Job to Compile and Run
+Prerequisites:
+
+Jenkins is installed and running
+
+C compiler (gcc) installed on Jenkins machine
+
+Git plugin installed in Jenkins
+
+Step-by-step in Jenkins:
+Create a New Job
+
+Go to Jenkins Dashboard → New Item
+
+Enter a name like C-HelloWorld-Build
+
+Select Freestyle project → Click OK
+
+Configure Git Repo
+
+Under Source Code Management → Select Git
+
+Enter your GitHub repo URL: https://github.com/your-username/C-Jenkins-Demo.git
+
+Build Environment
+
+Optionally select "Delete workspace before build starts" for a clean build
+
+Build Steps
+
+Click Add build step → Execute shell
+
+Enter this shell script:
+
+bash
+Copy
+Edit
+gcc hello.c -o hello
+./hello
+Save and Build
+
+Click Save
+
+Click Build Now
+
+Check Console Output
+
+Go to Build History → Click the build → Console Output
+
+You should see: Hello, World from Jenkins!
+
