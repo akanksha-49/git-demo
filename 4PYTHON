@@ -1,0 +1,12 @@
+print("Hello from Python. \n Welcome to Devops Lab")
+
+o vi Dockerfile
+
+FROM python: latest
+WORKDIR /pythonapp
+copy ./Hello.py .
+CMD ["python", "Hello.py"]
+
+ Build and run the Docker image
+o $ docker build –t pythonimage .
+o $ docker run -it pythonimage
