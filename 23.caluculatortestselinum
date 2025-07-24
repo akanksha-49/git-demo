@@ -1,0 +1,123 @@
+Create a folder called calculator-app and use this structure:
+
+pgsql
+Copy
+Edit
+calculator-app/
+├── index.html
+├── calculatortest.js
+├── Dockerfile
+├── package.json
+✅ Step 1: index.html (Simple Calculator)
+html
+Copy
+Edit
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Simple Calculator</title>
+</head>
+<body>
+  <h2>Simple Calculator</h2>
+  <input type="text" id="num1" placeholder="Enter first number"><br><br>
+  <input type="text" id="num2" placeholder="Enter second number"><br><br>
+  <button onclick="add()">Add</button>
+  <p id="result"></p>
+
+  <script>
+    function add() {
+      var n1 = parseInt(document.getElementById("num1").value);
+      var n2 = parseInt(document.getElementById("num2").value);
+      var sum = n1 + n2;
+      document.getElementById("result").innerText = "Answer: " + sum;
+    }
+  </script>
+</body>
+</html>
+✅ Step 2: package.json
+json
+Copy
+Edit
+{
+  "name": "calculator-selenium",
+  "version": "1.0.0",
+  "description": "Simple calculator with selenium test",
+  "dependencies": {
+    "selenium-webdriver": "^4.0.0",
+    "http-server": "^14.1.1"
+  }
+}
+✅ Step 3: calculatortest.js (Selenium Test for Addition)
+javascript
+Copy
+Edit
+// calculatortest.js
+const { Builder, By, until } = require('selenium-webdriver');
+
+(async function calculatorTest() {
+  let driver = await new Builder().forBrowser('chrome').build();
+  try {
+    await driver.get('http://localhost:8080');
+
+    await driver.findElement(By.id('num1')).sendKeys('5');
+    await driver.findElement(By.id('num2')).sendKeys('8');
+    await driver.findElement(By.xpath('//button[text()="Add"]')).click();
+
+    await driver.sleep(1000); // wait for result
+    let resultText = await driver.findElement(By.id('result')).getText();
+
+    console.log("Result from page:", resultText);
+    if (resultText.includes('13')) {
+      console.log('✅ Addition test passed');
+    } else {
+      console.log('❌ Addition test failed');
+    }
+  } finally {
+    await driver.quit();
+  }
+})();
+✅ Step 4: Dockerfile
+Dockerfile
+Copy
+Edit
+# Use Node.js with Chrome
+FROM node:18-slim
+
+# Install Chrome
+RUN apt update && apt install -y wget gnupg unzip curl \
+ && wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb \
+ && apt install -y ./google-chrome*.deb
+
+# Create app directory
+WORKDIR /app
+
+# Copy files
+COPY . .
+
+# Install Node.js dependencies
+RUN npm install
+
+# Start server and run Selenium test
+CMD npx http-server -p 8080 & sleep 2 && node calculatortest.js
+✅ Step 5: Build Docker Image
+bash
+Copy
+Edit
+docker build -t calciimage .
+✅ Step 6: Run Container and Test
+bash
+Copy
+Edit
+docker run --rm --name calci-container calciimage
+✅ Sample Output:
+csharp
+Copy
+Edit
+Starting up http-server, serving ./
+Available on:
+  http://127.0.0.1:8080
+  http://172.17.0.2:8080
+Hit CTRL-C to stop the server
+Result from page: Answer: 13
+✅ Addition test passed
