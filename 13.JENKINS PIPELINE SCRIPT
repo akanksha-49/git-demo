@@ -1,0 +1,78 @@
+Steps:
+
+In browser open https://localhost:8080 and login in using your account.
+
+Create a new Jenkins job using the "pipeline" project type.
+
+In the dash board, Click on New item to create job.
+
+Assign a meaningful name for the job and select pipeline project option and click on OK button.
+
+In the job configuration, provide description about job.
+
+Type the following script under the space provided for writing the script.
+
+pipeline {
+
+}
+
+agent any
+
+stages{
+
+stage('compile'){
+
+steps{ } echo "Compiled Successfully";
+
+stage('Junit'){
+
+}
+
+} steps{ echo "JUnit test passed Successfully"; }
+
+stage('Qualitycheck'){
+
+}
+
+steps{ echo " Quality Check passed Successfully"; }
+
+stage('Deploy'){
+
+steps( echo "Deployed Successfully"; } }
+
+post{
+
+always{
+echo "This will always run"
+
+success(
+
+echo "This will run on success"
+
+failure(
+
+}
+
+echo "This will run on failure"
+
+unstable{
+
+}
+
+echo "This will run only if the run is marked as Unstable"
+
+changed(
+
+echo "Pipe line changed"
+
+}
+
+}
+
+}
+
+Cilck on Save button.
+
+Click on build now option available in dash board.
+To watch the output click on Console output.
+13
