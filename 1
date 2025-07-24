@@ -1,0 +1,38 @@
+JAVA DOCKER IMAGE 
+
+
+
+ Login to super user using sudo su command
+o $ sudo su
+ Create a directory JavaDemo and create a JAVA file and Docker file inside it.
+o $ mkdir JavaDemo
+o $ cd JavaDemo
+o vi Hello.java
+class Hello
+{
+public static void main(String args[])
+{
+System.out.println("Hello Docker from java");
+}
+}
+o vi Dockerfile
+
+FROM openjdk:11
+WORKDIR /app
+COPY ./Hello.java .
+RUN javac Hello.java
+CMD ["java", "Hello"]
+ Build and run the Docker image
+o $ docker build –t javaimage .
+o $ docker run -it javaimage
+ Login to Docker hub and push the image to your account
+o $ docker login -u [Dockerhubusername]
+Eg: $ docker login -u sowjanyajindam
+o $ docker tag imagename Dockerhubusername/imagename
+Eg: $ docker tag javaimage sowjanyajindam/javaimage
+o $ docker push Dockerhubusername/imagename
+Eg: $ docker push sowjanyajindam/javaimage
+
+ Pull the code from Docker hub and execute
+o $ docker pull sowjanyajindam/ javaimage
+o $ docker run -it sowjanyajindam/ javaimage
