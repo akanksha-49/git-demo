@@ -1,0 +1,73 @@
+class ReverseNumber
+{
+public static void main(String args[])
+{
+int n=Integer.parseInt(args[0]);
+int rev=0;
+int r;
+while(n>0)
+{
+r=n%10;
+rev=(rev*10)+r;
+n=n/10;
+}
+System.out.println("Reverse number:"+rev);
+}
+}
+
+
+cd path/to/ReverseNumberProject
+git init
+git remote add origin https://github.com/your-username/ReverseNumberProject.git
+
+git add .
+git commit -m "Initial commit: Java program to reverse a number"
+git branch -M main
+git push -u origin main
+
+
+Open Jenkins Dashboard
+
+Click New Item
+
+Enter name: Java-Reverse-Number
+
+Select Freestyle project → Click OK
+
+Git Repository
+
+Under Source Code Management, select Git
+
+Repo URL: https://github.com/your-username/ReverseNumberProject.git
+
+Build Step
+
+Click Add build step → Execute shell
+
+Enter the following shell script:
+
+bash
+Copy code
+echo "Compiling Java program..."
+javac ReverseNumber.java
+
+echo "Running Java program..."
+java ReverseNumber
+Save and Build
+
+Click Save
+
+Click Build Now
+
+Console Output
+
+Go to Build History → Click latest build → Console Output
+
+You should see:
+
+yaml
+Copy code
+Reversed Number: 4321
+
+
+
