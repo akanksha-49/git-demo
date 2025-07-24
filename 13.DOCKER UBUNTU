@@ -1,0 +1,53 @@
+1. Pull Ubuntu Image (if not already pulled)
+bash
+Copy
+Edit
+docker pull ubuntu
+🔹 2. Run a Container with Ubuntu and Name It MyContainer
+bash
+Copy
+Edit
+docker run -it --name MyContainer ubuntu
+This starts an interactive terminal (-it) inside the Ubuntu container and names it MyContainer.
+
+🔹 3. Inside the Container: Execute Shell Commands
+Once inside the container, you can run commands like:
+
+bash
+Copy
+Edit
+apt update
+apt install -y curl
+echo "Hello from MyContainer"
+🔹 4. Exit the Container
+bash
+Copy
+Edit
+exit
+🔹 5. Execute Shell Commands in a Running Container (from host)
+If the container is already running in the background, use:
+
+bash
+Copy
+Edit
+docker exec -it MyContainer bash
+Then run any shell command interactively.
+
+Or run a one-line command directly:
+
+bash
+Copy
+Edit
+docker exec MyContainer echo "Running inside MyContainer"
+🔹 6. Start/Stop Container (if it's stopped)
+bash
+Copy
+Edit
+docker start MyContainer   # Start the container
+docker stop MyContainer    # Stop the container
+🧠 Bonus: Run in Detached Mode with a Command
+bash
+Copy
+Edit
+docker run -dit --name MyContainer ubuntu bash
+docker exec -it MyContainer bash
