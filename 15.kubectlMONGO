@@ -1,0 +1,12 @@
+minikube start
+kubectl version 
+kubectl create deployment mongo-dep --image=mongo:latest
+kubectl get pods
+kubectl exec -it podid
+
+sh=> after that 
+>test 
+show databases;
+show collections;
+db.student.insertMany([{name:"Akanksha"},{name:"Hema"}]);
+show collections
