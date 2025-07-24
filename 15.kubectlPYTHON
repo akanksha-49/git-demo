@@ -1,0 +1,9 @@
+minikube start
+kubectl version 
+kubectl create deployment python-dep --image=python:latest
+kubectl get pods
+kubectl exec -it podid
+
+
+>test 
+print('Good Morning')
