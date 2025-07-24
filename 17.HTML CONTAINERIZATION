@@ -1,0 +1,75 @@
+1. Project Structure
+Create a folder called html-docker-app:
+
+css
+Copy
+Edit
+html-docker-app/
+├── Dockerfile
+└── index.html
+✅ 2. index.html (Simple HTML App)
+html
+Copy
+Edit
+<!-- index.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Dockerized HTML App</title>
+</head>
+<body>
+    <h1>Hello from Dockerized HTML App!</h1>
+</body>
+</html>
+✅ 3. Dockerfile
+Dockerfile
+Copy
+Edit
+# Use official Nginx image
+FROM nginx:alpine
+
+# Remove default Nginx index page and replace with ours
+COPY index.html /usr/share/nginx/html/index.html
+
+# Expose port 80
+EXPOSE 80
+✅ 4. Build the Docker Image
+Open terminal in the html-docker-app folder:
+
+bash
+Copy
+Edit
+docker build -t your-dockerhub-username/html-docker-app:latest .
+Replace your-dockerhub-username with your Docker Hub username.
+
+✅ 5. Run the Docker Container
+bash
+Copy
+Edit
+docker run -d -p 8080:80 --name html-app your-dockerhub-username/html-docker-app:latest
+Then open in browser: http://localhost:8080
+
+✅ 6. Push the Image to Docker Hub
+Step 1: Login
+bash
+Copy
+Edit
+docker login
+Step 2: Push the image
+bash
+Copy
+Edit
+docker push your-dockerhub-username/html-docker-app:latest
+✅ Image will be available on https://hub.docker.com/repositories
+
+✅ 7. Push Code to GitHub
+bash
+Copy
+Edit
+cd html-docker-app
+git init
+git add .
+git commit -m "Initial commit: Dockerized HTML app"
+git remote add origin https://github.com/your-username/html-docker-app.git
+git branch -M main
+git push -u origin main
