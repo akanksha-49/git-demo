@@ -1,0 +1,68 @@
+✅ Step-by-Step Guide: Docker Compose with BusyBox
+📁 Folder Structure
+Create a folder named busybox-compose and inside it, create:
+
+Copy
+Edit
+busybox-compose/
+├── docker-compose.yml
+📄 1. docker-compose.yml
+yaml
+Copy
+Edit
+version: '3'
+services:
+  bbConA:
+    image: busybox
+    container_name: bbConA
+    command: sh -c "sleep 3600"
+    networks:
+      - mynet
+
+  bbConB:
+    image: busybox
+    container_name: bbConB
+    command: sh -c "sleep 3600"
+    networks:
+      - mynet
+
+networks:
+  mynet:
+    driver: bridge
+sleep 3600 keeps the containers running (for 1 hour) so you can manually exec into them.
+
+✅ Step 2: Run the Compose File
+bash
+Copy
+Edit
+cd busybox-compose
+docker-compose up -d
+This creates two containers: bbConA and bbConB on a custom bridge network called mynet.
+
+✅ Step 3: Ping bbConB from bbConA
+bash
+Copy
+Edit
+docker exec -it bbConA sh
+Now inside bbConA, run:
+
+sh
+Copy
+Edit
+ping bbConB
+✅ You’ll see responses like:
+
+python
+Copy
+Edit
+PING bbConB (172.x.x.x): 56 data bytes
+64 bytes from 172.x.x.x: seq=0 ttl=64 time=0.123 ms
+This confirms the containers can talk to each other over the custom Docker network.
+
+✅ Step 4: Clean Up
+When done:
+
+bash
+Copy
+Edit
+docker-compose down
