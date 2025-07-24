@@ -1,0 +1,33 @@
+Login to super user using sudo su command
+o $ sudo su
+ Create a directory HtmlDemo and create a HTML file and Docker file inside it.
+o $ mkdir HtmlDemo
+o $ cd HtmlDemo
+o vi index.html
+<html>
+<head>
+<title> Hello Page</title>
+</head>
+<body>
+<<h1> Welcome to HTML Docker </h1>
+</body>
+</html>
+o vi Dockerfile
+FROM nginx:latest
+WORKDIR /usr/share/nginx/html
+COPY ./index.html .
+EXPOSE 80
+ Build and run the Docker image
+o $ docker build –t htmlimage .
+o $ docker run -it htmlimage
+ Login to Docker hub and push the image to your account
+o $ docker login -u [Dockerhubusername]
+Eg: $ docker login -u sowjanyajindam
+o $ docker tag imagename Dockerhubusername/imagename
+Eg: $ docker tag htmlimage sowjanyajindam/htmlimage
+o $ docker push Dockerhubusername/imagename
+Eg: $ docker push sowjanyajindam/htmlimage
+
+ Pull the code from Docker hub and execute
+o $ docker pull sowjanyajindam/htmlimage
+o $ docker run -it sowjanyajindam/htmlimage
