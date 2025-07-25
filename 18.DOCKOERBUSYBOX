@@ -32,9 +32,7 @@ networks:
 sleep 3600 keeps the containers running (for 1 hour) so you can manually exec into them.
 
 ✅ Step 2: Run the Compose File
-bash
-Copy
-Edit
+
 cd busybox-compose
 docker-compose up -d
 This creates two containers: bbConA and bbConB on a custom bridge network called mynet.
