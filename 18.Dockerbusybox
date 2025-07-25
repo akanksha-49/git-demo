@@ -1,0 +1,27 @@
+ Login to super user using sudo su command
+o $ sudo su
+ Install docker compose and check version
+o $ apt-get update
+o $ apt-get install docker-compose
+o $ docker-compose version
+ Create a directory dockercomposeDemo and create a docker compose yaml file
+inside it.
+o $ mkdir dockercomposeDemo
+o $ cd dockercomposeDemo
+o vi bb-docker-compose.yaml
+
+version: '3'
+services:
+busybox1:
+image: busybox:latest
+container_name: bbConA
+command: sh -c 'ping busybox2'
+links:
+- busybox2
+busybox2:
+image: busybox:latest
+container_name: bbConB
+command: sleep infinity
+
+ Build and run the Docker images
+o $ docker-compose -f bb-docker-compose.yaml up -d
